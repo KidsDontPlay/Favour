@@ -1,5 +1,6 @@
 package mrriegel.favour.init;
 
+import mrriegel.favour.block.BlockThatOre;
 import mrriegel.limelib.block.CommonBlock;
 
 public class ModBlocks {
