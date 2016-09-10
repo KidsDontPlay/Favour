@@ -34,7 +34,7 @@ public class CommonProxy implements IProxy {
 
 	@Override
 	public void postInit(FMLPostInitializationEvent event) {
-FavourHelper.init();
+		FavourHelper.init();
 	}
 
 }

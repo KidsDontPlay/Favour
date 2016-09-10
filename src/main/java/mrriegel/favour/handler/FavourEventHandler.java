@@ -1,6 +1,7 @@
 package mrriegel.favour.handler;
 
 import mrriegel.favour.FavourHelper;
+import mrriegel.favour.FavourHelper.Favour;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
@@ -15,7 +16,7 @@ public class FavourEventHandler {
 		if (event.getSource().getEntity() instanceof EntityPlayer && event.getEntityLiving() instanceof IMob) {
 			EntityPlayer player = (EntityPlayer) event.getSource().getEntity();
 			if (FavourHelper.canInteract(player)) {
-				FavourHelper.addGodFavour(player, (int) event.getAmount());
+				FavourHelper.addFavour(player, (int) event.getAmount(), Favour.GODFAVOUR);
 				System.out.println("p: " + player.motionX + " " + player.motionZ);
 			}
 		}
@@ -26,13 +27,13 @@ public class FavourEventHandler {
 		if (event.getSource().getEntity() instanceof EntityPlayer && event.getEntityLiving() instanceof IMob) {
 			EntityPlayer player = (EntityPlayer) event.getSource().getEntity();
 			if (FavourHelper.canInteract(player)) {
-				FavourHelper.addGodFavour(player, (int) (event.getEntityLiving().getMaxHealth() / (event.getEntityLiving().isNonBoss() ? 3F : 1.5F)));
+				FavourHelper.addFavour(player, (int) (event.getEntityLiving().getMaxHealth() / (event.getEntityLiving().isNonBoss() ? 3F : 1.5F)), Favour.GODFAVOUR);
 			}
 		}
 	}
-	
+
 	@SubscribeEvent
 	public void damage(BreakEvent event) {
-		
+
 	}
 }
