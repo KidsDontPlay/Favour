@@ -1,0 +1,26 @@
+package mrriegel.favour.proxy;
+
+import mrriegel.favour.init.ModBlocks;
+import mrriegel.favour.init.ModItems;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+
+public class ClientProxy extends CommonProxy{
+	@Override
+	public void preInit(FMLPreInitializationEvent event) {
+		super.preInit(event);
+		ModBlocks.initClient();
+		ModItems.initClient();
+	}
+
+	@Override
+	public void init(FMLInitializationEvent event) {
+		super.init(event);
+	}
+
+	@Override
+	public void postInit(FMLPostInitializationEvent event) {
+		super.postInit(event);
+}
+}
