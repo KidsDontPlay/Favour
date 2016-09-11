@@ -2,16 +2,23 @@ package mrriegel.favour.block;
 
 import java.util.Random;
 
-import mrriegel.favour.particle.ParticleGod;
+import mrriegel.favour.proxy.ClientProxy;
 import mrriegel.limelib.block.CommonBlock;
 import mrriegel.limelib.helper.ColorHelper;
+import mrriegel.limelib.helper.ParticleHelper;
+import mrriegel.limelib.particle.CommonParticle;
+import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.EnumDyeColor;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumFacing.Axis;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
@@ -27,45 +34,91 @@ public class BlockThatOre extends CommonBlock {
 
 	@Override
 	public void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand) {
-		for (int i = 0; i < 4; ++i) {
-			double d0 = pos.getX() + rand.nextFloat();
-			double d1 = pos.getY() + rand.nextFloat();
-			double d2 = pos.getZ() + rand.nextFloat();
-			double d3 = (rand.nextFloat() - 0.5D) * 0.5D * 0;
-			double d4 = (rand.nextFloat() - 0.5D) * 0.5D * 2.5;
-			double d5 = (rand.nextFloat() - 0.5D) * 0.5D * 0;
-			int j = rand.nextInt(2) * 2 - 1;
+		for (int i = 0; i < 1; ++i) {
+			for (EnumFacing f : EnumFacing.VALUES) {
+				BlockPos p = pos;
+				for (Vec3d vec : ParticleHelper.getVecsForLine(p, p, 1.5)) {
+					Minecraft.getMinecraft().effectRenderer.addEffect(new CommonParticle(vec.xCoord, vec.yCoord, vec.zCoord, (worldIn.rand.nextDouble() - .5) / 20d, (worldIn.rand.nextDouble() - .5) / 20d, (worldIn.rand.nextDouble() - .5) / 20d).setMaxAge2(15).setFlouncing(.05).setColor(0xff0000, 0xffffff).setTexture(ClientProxy.roundParticle));
+				}
+				break;
+			}
+		}
+		pos = pos.up();
+		// for (Vec3d vec : ParticleHelper.getVecsForCircle(pos, .34, 14.4,
+		// Axis.Y)) {
+		// Minecraft.getMinecraft().effectRenderer.addEffect(new
+		// ParticleGod(pos.getX() + .5, pos.getY() + .5, pos.getZ() + .5,
+		// vec.xCoord - (pos.getX() + .5), vec.yCoord - (pos.getY() + .5),
+		// vec.zCoord - (pos.getZ() + .5)).setMaxAge2(new Random().nextInt(30) +
+		// 10).setColor(ColorHelper.getRGB(EnumDyeColor.WHITE),
+		// 0).setFlouncing(.004));
+		// }
 
-			// if (worldIn.getBlockState(pos.west()).getBlock() != this &&
-			// worldIn.getBlockState(pos.east()).getBlock() != this) {
-			// d0 = pos.getX() + 0.5D + 0.25D * j;
-			// d3 = rand.nextFloat() * 2.0F * j;
-			// } else {
-			// d2 = pos.getZ() + 0.5D + 0.25D * j;
-			// d5 = rand.nextFloat() * 2.0F * j;
-			// }
-			// Minecraft.getMinecraft().effectRenderer.addEffect(new
-			// ParticleSin(worldIn, d0, d1, d2, d3, d4, d5));
+	}
+
+	@Override
+	protected ItemBlock getItemBlock() {
+		return (ItemBlock) new I(this).setRegistryName(getRegistryName());
+	}
+
+	private static class I extends ItemBlock {
+
+		public I(Block block) {
+			super(block);
+		}
+
+		@Override
+		public boolean onEntityItemUpdate(EntityItem entityItem) {
+			if (entityItem.worldObj.isRemote)
+				// for (Vec3d vec :
+				// ParticleHelper.getVecsForLine(entityItem.posX,
+				// entityItem.posY, entityItem.posZ, entityItem.posX,
+				// entityItem.posY + 3, entityItem.posZ, 5.5))
+				// Minecraft.getMinecraft().effectRenderer.addEffect(new
+				// CommonParticle(vec.xCoord, vec.yCoord,
+				// vec.zCoord).setTexture(ClientProxy.squareParticle).setColor(ColorHelper.getRGB(EnumDyeColor.ORANGE),
+				// 0).setMaxAge2(44).setFlouncing(0.01).setScale(.65f));
+				Minecraft.getMinecraft().effectRenderer.addEffect(new CommonParticle(entityItem.posX, entityItem.posY + .2, entityItem.posZ, 0, 0.13, 0).setTexture(ClientProxy.sparkleParticle).setColor(ColorHelper.getRGB(EnumDyeColor.CYAN), 0).setMaxAge2(24).setFlouncing(0.04).setScale(2.65f));
+			return super.onEntityItemUpdate(entityItem);
 		}
 	}
 
 	@Override
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ) {
 		if (!worldIn.isRemote) {
-
+			EntityItem ei = new EntityItem(worldIn);
+			ei.setEntityItemStack(new ItemStack(Blocks.EMERALD_BLOCK));
+			// boolean s = WorldHelper.spawnInRange(new EntityEnderman(worldIn),
+			// worldIn, pos, 3);
 		} else {
-			BlockPos start = pos.up();
-			BlockPos end = pos.up(1).west(6).north(0);
-			final Vec3d ovec = new Vec3d(end.getX() - start.getX(), end.getY() - start.getY(), end.getZ() - start.getZ());
-			int amount = (int) (ovec.lengthVector() * 1);
-			// amount=0;
-			Vec3d toAdd = new Vec3d(ovec.xCoord / amount, ovec.yCoord / amount, ovec.zCoord / amount);
-			Vec3d foo = Vec3d.ZERO;
-			Random rand = new Random();
-			for (int i = 0; i < amount + 1; i++) {
-				Minecraft.getMinecraft().effectRenderer.addEffect(new ParticleGod(start.getX() + foo.xCoord + .5, start.getY() + foo.yCoord + .5, start.getZ() + foo.zCoord + .5, ColorHelper.getRGB(EnumDyeColor.LIME)));
-				foo = foo.add(toAdd);
+			// for (Vec3d vec : ParticleHelper.getVecsForCircle(pos, 2.44, 4.4,
+			// Axis.Y))
+			// Minecraft.getMinecraft().effectRenderer.addEffect(new
+			// ParticleGod(vec.xCoord, vec.yCoord, vec.zCoord).setMaxAge2(new
+			// Random().nextInt(30) +
+			// 10).setColor(ColorHelper.getRGB(EnumDyeColor.ORANGE),
+			// 0).setFlouncing(.004));
+
+			// for (Vec3d vec : ParticleHelper.getVecsForLine(pos,
+			// pos.up(10).east().south(), 7.5))
+			// Minecraft.getMinecraft().effectRenderer.addEffect(new
+			// ParticleGod(vec.xCoord, vec.yCoord, vec.zCoord).setMaxAge2(new
+			// Random().nextInt(20) +
+			// 5).setColor(ColorHelper.getRGB(EnumDyeColor.PURPLE),
+			// 0).setFlouncing(.04));
+			pos = pos.up();
+			for (Vec3d vec : ParticleHelper.getVecsForExplosion(pos, .34, 14.4, Axis.Y)) {
+				Minecraft.getMinecraft().effectRenderer.addEffect(new CommonParticle(pos.getX() + .5, pos.getY() + .5, pos.getZ() + .5, vec.xCoord, vec.yCoord, vec.zCoord).setMaxAge2(new Random().nextInt(30) + 10).setFlouncing(.004).setTexture(ClientProxy.roundParticle));
 			}
+
+			for (Vec3d vec : ParticleHelper.getVecsForExplosion(pos, .34, 14.4, Axis.X)) {
+				Minecraft.getMinecraft().effectRenderer.addEffect(new CommonParticle(pos.getX() + .5, pos.getY() + .5, pos.getZ() + .5, vec.xCoord, vec.yCoord, vec.zCoord).setMaxAge2(new Random().nextInt(30) + 10).setFlouncing(.004).setTexture(ClientProxy.roundParticle));
+			}
+
+			for (Vec3d vec : ParticleHelper.getVecsForExplosion(pos, .34, 14.4, Axis.Z)) {
+				Minecraft.getMinecraft().effectRenderer.addEffect(new CommonParticle(pos.getX() + .5, pos.getY() + .5, pos.getZ() + .5, vec.xCoord, vec.yCoord, vec.zCoord).setMaxAge2(new Random().nextInt(30) + 10).setFlouncing(.004).setTexture(ClientProxy.roundParticle));
+			}
+
 		}
 		return !super.onBlockActivated(worldIn, pos, state, playerIn, hand, heldItem, side, hitX, hitY, hitZ);
 	}
