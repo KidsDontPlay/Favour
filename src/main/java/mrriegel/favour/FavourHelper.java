@@ -56,6 +56,10 @@ public class FavourHelper {
 		return NBTHelper.getInt(player.getEntityData(), f.ID);
 	}
 
+	public static int getMaxFavour(EntityPlayer player, Favour f) {
+		return NBTHelper.getInt(player.getEntityData(), "max" + f.ID);
+	}
+
 	public static void addFavour(EntityPlayer player, int favour, Favour f) {
 		NBTHelper.setInt(player.getEntityData(), f.ID, NBTHelper.getInt(player.getEntityData(), "Favour") + favour);
 	}

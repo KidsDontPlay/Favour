@@ -3,6 +3,8 @@ package mrriegel.favour.proxy;
 import java.util.List;
 import java.util.Random;
 
+import org.lwjgl.input.Keyboard;
+
 import mrriegel.favour.Favour;
 import mrriegel.favour.init.ModBlocks;
 import mrriegel.favour.init.ModItems;
@@ -22,6 +24,7 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.gameevent.InputEvent.KeyInputEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.ClientTickEvent;
 
 import com.google.common.collect.Lists;
@@ -65,11 +68,8 @@ public class ClientProxy extends CommonProxy {
 			return;
 		for (EnumFacing x : EnumFacing.VALUES) {
 			BlockPos pos = p.offset(x);
-			List<Vec3d> lis = ParticleHelper.getVecsForCircle(pos, .20, 254.4, Axis.Y);
-			if (GuiScreen.isShiftKeyDown())
-				lis = Lists.reverse(lis);
-			Vec3d vec = lis.get(((int) (world.getTotalWorldTime() * 10)) % lis.size());
-			Minecraft.getMinecraft().effectRenderer.addEffect(new CommonParticle(pos.getX() + .5, pos.getY() + .5, pos.getZ() + .5, vec.xCoord - (pos.getX() + .5), 0.018, vec.zCoord - (pos.getZ() + .5)).setMaxAge2(new Random().nextInt(10) + 20).setScale(1.0f));
+			Vec3d vec = ParticleHelper.getVecForSpirale(pos, .12, 0.1, 120, false, Axis.X);
+			Minecraft.getMinecraft().effectRenderer.addEffect(new CommonParticle(pos.getX() + .5, pos.getY() + .5, pos.getZ() + .5, vec.xCoord, vec.yCoord, vec.zCoord).setMaxAge2(new Random().nextInt(10) + 20).setScale(1.0f).setTexture(squareParticle));
 		}
 	}
 

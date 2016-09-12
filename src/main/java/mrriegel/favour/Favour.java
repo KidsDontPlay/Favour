@@ -28,6 +28,7 @@ public class Favour {
 	public void preInit(FMLPreInitializationEvent event) {
 		proxy.preInit(event);
 		logger = event.getModLog();
+		System.out.println("zip");
 	}
 
 	@EventHandler
