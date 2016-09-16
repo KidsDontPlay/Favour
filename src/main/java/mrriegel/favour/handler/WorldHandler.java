@@ -17,8 +17,7 @@ public class WorldHandler implements IWorldGenerator {
 		int dimension = world.provider.getDimension();
 		if (dimension != -1 && dimension != 1) {
 			if (world.getWorldType() != WorldType.FLAT) {
-				new WorldHelper();
-				WorldHelper.addOreSpawn(ModBlocks.that.getDefaultState(), world, 40, 4 + world.rand.nextInt(3), chunkX, chunkZ, 0, 228);
+//				WorldHelper.addOreSpawn(ModBlocks.that.getDefaultState(), world, 40, 4 + world.rand.nextInt(3), chunkX, chunkZ, 0, 228);
 			}
 		}
 

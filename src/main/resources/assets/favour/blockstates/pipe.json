@@ -1,0 +1,172 @@
+{
+    "forge_marker" : 1, 
+    "defaults" : {
+        "textures" : {
+            "particle" : "favour:blocks/pipe", 
+            "all" : "favour:blocks/pipe"
+        }, 
+        "model" : "favour:pipeCenter"
+    }, 
+    "variants" : {
+        "normal" : [{
+                
+            }], 
+        "inventory" : [{
+                "transform" : "forge:default-block", 
+                "y" : 90
+            }], 
+        "north" : {
+            "pipe" : {
+                "submodel" : {
+                    "s1" : {
+                        "model" : "favour:pipePin", 
+                        "x" : 90
+                    }
+                }
+            }, 
+            "tile" : {
+                "submodel" : {
+                    "s1" : {
+                        "model" : "favour:pipePin", 
+                        "x" : 90
+                    }, 
+                    "s1s" : {
+                        "model" : "favour:pipeConnect", 
+                        "x" : 90
+                    }
+                }
+            }, 
+            "null" : {
+                
+            }
+        }, 
+        "south" : {
+            "pipe" : {
+                "submodel" : {
+                    "s2" : {
+                        "model" : "favour:pipePin", 
+                        "x" : 270
+                    }
+                }
+            }, 
+            "tile" : {
+                "submodel" : {
+                    "s2" : {
+                        "model" : "favour:pipePin", 
+                        "x" : 270
+                    }, 
+                    "s2s" : {
+                        "model" : "favour:pipeConnect", 
+                        "x" : 270
+                    }
+                }
+            }, 
+            "null" : {
+                
+            }
+        }, 
+        "west" : {
+            "pipe" : {
+                "submodel" : {
+                    "s3" : {
+                        "model" : "favour:pipePin", 
+                        "x" : 90, 
+                        "y" : 270
+                    }
+                }
+            }, 
+            "tile" : {
+                "submodel" : {
+                    "s3" : {
+                        "model" : "favour:pipePin", 
+                        "x" : 90, 
+                        "y" : 270
+                    }, 
+                    "s3s" : {
+                        "model" : "favour:pipeConnect", 
+                        "x" : 90, 
+                        "y" : 270
+                    }
+                }
+            }, 
+            "null" : {
+                
+            }
+        }, 
+        "east" : {
+            "pipe" : {
+                "submodel" : {
+                    "s4" : {
+                        "model" : "favour:pipePin", 
+                        "x" : 90, 
+                        "y" : 90
+                    }
+                }
+            }, 
+            "tile" : {
+                "submodel" : {
+                    "s4" : {
+                        "model" : "favour:pipePin", 
+                        "x" : 90, 
+                        "y" : 90
+                    }, 
+                    "s4s" : {
+                        "model" : "favour:pipeConnect", 
+                        "x" : 90, 
+                        "y" : 90
+                    }
+                }
+            }, 
+            "null" : {
+                
+            }
+        }, 
+        "up" : {
+            "pipe" : {
+                "submodel" : {
+                    "s5" : {
+                        "model" : "favour:pipePin"
+                    }
+                }
+            }, 
+            "tile" : {
+                "submodel" : {
+                    "s5" : {
+                        "model" : "favour:pipePin"
+                    }, 
+                    "s5s" : {
+                        "model" : "favour:pipeConnect"
+                    }
+                }
+            }, 
+            "null" : {
+                
+            }
+        }, 
+        "down" : {
+            "pipe" : {
+                "submodel" : {
+                    "s6" : {
+                        "model" : "favour:pipePin", 
+                        "x" : 180
+                    }
+                }
+            }, 
+            "tile" : {
+                "submodel" : {
+                    "s6" : {
+                        "model" : "favour:pipePin", 
+                        "x" : 180
+                    }, 
+                    "s6s" : {
+                        "model" : "favour:pipeConnect", 
+                        "x" : 180
+                    }
+                }
+            }, 
+            "null" : {
+                
+            }
+        }
+    }
+}
