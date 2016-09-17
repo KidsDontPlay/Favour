@@ -3,7 +3,18 @@
     "defaults" : {
         "textures" : {
             "particle" : "favour:blocks/pipe", 
-            "all" : "favour:blocks/pipe"
+            "upCenter" : "favour:blocks/pipe", 
+            "downCenter" : "favour:blocks/pipe", 
+            "northCenter" : "favour:blocks/pipe", 
+            "southCenter" : "favour:blocks/pipe", 
+            "eastCenter" : "favour:blocks/pipe", 
+            "westCenter" : "favour:blocks/pipe", 
+            "upPin" : "favour:blocks/pipe", 
+            "downPin" : "favour:blocks/pipe", 
+            "northPin" : "favour:blocks/pipe", 
+            "southPin" : "favour:blocks/pipe", 
+            "eastPin" : "favour:blocks/pipe", 
+            "westPin" : "favour:blocks/pipe"
         }, 
         "model" : "favour:pipeCenter"
     }, 
@@ -17,8 +28,15 @@
             }], 
         "north" : {
             "pipe" : {
+                "textures" : {
+                    "northCenter" : "favour:blocks/invisible"
+                }, 
                 "submodel" : {
                     "s1" : {
+                        "textures" : {
+                            "upPin" : "favour:blocks/invisible", 
+                            "downPin" : "favour:blocks/invisible"
+                        }, 
                         "model" : "favour:pipePin", 
                         "x" : 90
                     }
@@ -27,6 +45,10 @@
             "tile" : {
                 "submodel" : {
                     "s1" : {
+                        "textures" : {
+                            "upPin" : "favour:blocks/invisible", 
+                            "downPin" : "favour:blocks/invisible"
+                        }, 
                         "model" : "favour:pipePin", 
                         "x" : 90
                     }, 
@@ -42,8 +64,15 @@
         }, 
         "south" : {
             "pipe" : {
+                "textures" : {
+                    "southCenter" : "favour:blocks/invisible"
+                }, 
                 "submodel" : {
                     "s2" : {
+                        "textures" : {
+                            "upPin" : "favour:blocks/invisible", 
+                            "downPin" : "favour:blocks/invisible"
+                        }, 
                         "model" : "favour:pipePin", 
                         "x" : 270
                     }
@@ -52,6 +81,10 @@
             "tile" : {
                 "submodel" : {
                     "s2" : {
+                        "textures" : {
+                            "upPin" : "favour:blocks/invisible", 
+                            "downPin" : "favour:blocks/invisible"
+                        }, 
                         "model" : "favour:pipePin", 
                         "x" : 270
                     }, 
@@ -67,8 +100,15 @@
         }, 
         "west" : {
             "pipe" : {
+                "textures" : {
+                    "westCenter" : "favour:blocks/invisible"
+                }, 
                 "submodel" : {
                     "s3" : {
+                        "textures" : {
+                            "upPin" : "favour:blocks/invisible", 
+                            "downPin" : "favour:blocks/invisible"
+                        }, 
                         "model" : "favour:pipePin", 
                         "x" : 90, 
                         "y" : 270
@@ -78,6 +118,10 @@
             "tile" : {
                 "submodel" : {
                     "s3" : {
+                        "textures" : {
+                            "upPin" : "favour:blocks/invisible", 
+                            "downPin" : "favour:blocks/invisible"
+                        }, 
                         "model" : "favour:pipePin", 
                         "x" : 90, 
                         "y" : 270
@@ -95,8 +139,15 @@
         }, 
         "east" : {
             "pipe" : {
+                "textures" : {
+                    "eastCenter" : "favour:blocks/invisible"
+                }, 
                 "submodel" : {
                     "s4" : {
+                        "textures" : {
+                            "upPin" : "favour:blocks/invisible", 
+                            "downPin" : "favour:blocks/invisible"
+                        }, 
                         "model" : "favour:pipePin", 
                         "x" : 90, 
                         "y" : 90
@@ -106,6 +157,10 @@
             "tile" : {
                 "submodel" : {
                     "s4" : {
+                        "textures" : {
+                            "upPin" : "favour:blocks/invisible", 
+                            "downPin" : "favour:blocks/invisible"
+                        }, 
                         "model" : "favour:pipePin", 
                         "x" : 90, 
                         "y" : 90
@@ -123,8 +178,15 @@
         }, 
         "up" : {
             "pipe" : {
+                "textures" : {
+                    "upCenter" : "favour:blocks/invisible"
+                }, 
                 "submodel" : {
                     "s5" : {
+                        "textures" : {
+                            "upPin" : "favour:blocks/invisible", 
+                            "downPin" : "favour:blocks/invisible"
+                        }, 
                         "model" : "favour:pipePin"
                     }
                 }
@@ -132,6 +194,10 @@
             "tile" : {
                 "submodel" : {
                     "s5" : {
+                        "textures" : {
+                            "upPin" : "favour:blocks/invisible", 
+                            "downPin" : "favour:blocks/invisible"
+                        }, 
                         "model" : "favour:pipePin"
                     }, 
                     "s5s" : {
@@ -145,8 +211,15 @@
         }, 
         "down" : {
             "pipe" : {
+                "textures" : {
+                    "downCenter" : "favour:blocks/invisible"
+                }, 
                 "submodel" : {
                     "s6" : {
+                        "textures" : {
+                            "upPin" : "favour:blocks/invisible", 
+                            "downPin" : "favour:blocks/invisible"
+                        }, 
                         "model" : "favour:pipePin", 
                         "x" : 180
                     }
@@ -155,6 +228,10 @@
             "tile" : {
                 "submodel" : {
                     "s6" : {
+                        "textures" : {
+                            "upPin" : "favour:blocks/invisible", 
+                            "downPin" : "favour:blocks/invisible"
+                        }, 
                         "model" : "favour:pipePin", 
                         "x" : 180
                     }, 

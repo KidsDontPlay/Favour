@@ -5,7 +5,6 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 import mrriegel.limelib.block.CommonBlock;
-import mrriegel.limelib.helper.InvHelper;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
@@ -13,8 +12,11 @@ import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
@@ -40,8 +42,9 @@ public class BlockPipe extends CommonBlock {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public boolean shouldSideBeRendered(IBlockState blockState, IBlockAccess worldIn, BlockPos pos, EnumFacing side) {
-		if (getConnect(worldIn, pos, side) != Connect.NULL)
-			return false;
+		// if (getConnect(worldIn, pos, side) != Connect.NULL)
+		// return false;
+		System.out.println("default: "+shouldSideBeRendered(blockState, worldIn, pos, side));
 		return true;
 	}
 
@@ -59,12 +62,12 @@ public class BlockPipe extends CommonBlock {
 	public BlockRenderLayer getBlockLayer() {
 		return BlockRenderLayer.CUTOUT;
 	}
-	
+
 	@Override
 	public boolean canRenderInLayer(BlockRenderLayer layer) {
-		return layer==BlockRenderLayer.CUTOUT||layer==BlockRenderLayer.TRANSLUCENT;
+		return layer == BlockRenderLayer.CUTOUT || layer == BlockRenderLayer.TRANSLUCENT;
 	}
-	
+
 	@Override
 	public boolean isTranslucent(IBlockState state) {
 		return true;
@@ -88,7 +91,9 @@ public class BlockPipe extends CommonBlock {
 	protected Connect getConnect(IBlockAccess worldIn, BlockPos pos, EnumFacing facing) {
 		if (worldIn.getBlockState(pos.offset(facing)).getBlock() instanceof BlockPipe)
 			return Connect.PIPE;
-		else if (InvHelper.hasItemHandler(worldIn, pos.offset(facing), facing.getOpposite()))
+		// else if (InvHelper.hasItemHandler(worldIn, pos.offset(facing),
+		// facing.getOpposite()))
+		else if ( worldIn.getTileEntity(pos.offset(facing)) != null)
 			return Connect.TILE;
 		return Connect.NULL;
 	}
@@ -146,10 +151,6 @@ public class BlockPipe extends CommonBlock {
 		@Override
 		public String getName() {
 			return name;
-		}
-
-		public boolean isConnected() {
-			return this == PIPE || this == TILE;
 		}
 	}
 
