@@ -31,9 +31,6 @@ import com.google.common.collect.Lists;
 
 public class ClientProxy extends CommonProxy {
 
-	public static final ResourceLocation roundParticle = new ResourceLocation(Favour.MODID + ":particle/roundParticle");
-	public static final ResourceLocation sparkleParticle = new ResourceLocation(Favour.MODID + ":particle/sparkleParticle");
-	public static final ResourceLocation squareParticle = new ResourceLocation(Favour.MODID + ":particle/squareParticle");
 
 	@Override
 	public void preInit(FMLPreInitializationEvent event) {
@@ -54,13 +51,6 @@ public class ClientProxy extends CommonProxy {
 	}
 
 	@SubscribeEvent
-	public void onTextureStitch(TextureStitchEvent event) {
-		event.getMap().registerSprite(roundParticle);
-		event.getMap().registerSprite(sparkleParticle);
-		event.getMap().registerSprite(squareParticle);
-	}
-
-	@SubscribeEvent
 	public void tick(ClientTickEvent event) {
 		BlockPos p = new BlockPos(830, 80, -600);
 		World world = Minecraft.getMinecraft().theWorld;
@@ -68,8 +58,8 @@ public class ClientProxy extends CommonProxy {
 			return;
 		for (EnumFacing x : EnumFacing.VALUES) {
 			BlockPos pos = p.offset(x);
-			Vec3d vec = ParticleHelper.getVecForSpirale(pos, .12, 0.1, 120, false, Axis.X);
-			Minecraft.getMinecraft().effectRenderer.addEffect(new CommonParticle(pos.getX() + .5, pos.getY() + .5, pos.getZ() + .5, vec.xCoord, vec.yCoord, vec.zCoord).setMaxAge2(new Random().nextInt(10) + 20).setScale(1.0f).setTexture(squareParticle));
+			Vec3d vec = ParticleHelper.getVecForSpirale(.12, 0.1, 120, false, Axis.X);
+			Minecraft.getMinecraft().effectRenderer.addEffect(new CommonParticle(pos.getX() + .5, pos.getY() + .5, pos.getZ() + .5, vec.xCoord, vec.yCoord, vec.zCoord).setMaxAge2(new Random().nextInt(10) + 20).setScale(1.0f).setTexture(ParticleHelper.squareParticle));
 		}
 	}
 

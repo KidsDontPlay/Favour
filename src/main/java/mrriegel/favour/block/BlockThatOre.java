@@ -77,8 +77,8 @@ public class BlockThatOre extends CommonBlock {
 			// 5).setColor(ColorHelper.getRGB(EnumDyeColor.PURPLE),
 			// 0).setFlouncing(.04));
 			pos = pos.up();
-			for (Vec3d vec : ParticleHelper.getVecsForExplosion(pos, .54, 84.4, Axis.Y)) {
-				Minecraft.getMinecraft().effectRenderer.addEffect(new CommonParticle(pos.getX() + .5, pos.getY() + .5, pos.getZ() + .5, vec.xCoord, vec.yCoord, vec.zCoord).setMaxAge2(40).setFlouncing(.009).setTexture(ClientProxy.roundParticle).setNoClip(true));
+			for (Vec3d vec : ParticleHelper.getVecsForExplosion(.54, 84, Axis.X)) {
+				Minecraft.getMinecraft().effectRenderer.addEffect(new CommonParticle(pos.getX() + .5, pos.getY() + .5, pos.getZ() + .5, vec.xCoord, vec.yCoord, vec.zCoord).setMaxAge2(40).setFlouncing(.009).setTexture(ParticleHelper.roundParticle).setNoClip(true));
 			}
 
 			// for (Vec3d vec : ParticleHelper.getVecsForExplosion(pos, .34,

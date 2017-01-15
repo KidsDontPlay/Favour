@@ -25,7 +25,7 @@ group= "mrriegel.favour" // http://maven.apache.org/guides/mini/guide-naming-con
 archivesBaseName = "favour"
 
 minecraft {
-    version = "1.10.2-12.18.1.2053"
+    version = "1.10.2-12.18.2.2099"
     runDir = "run"
     
     // the mappings can be changed at any time, and must be in the following format.
@@ -38,7 +38,7 @@ minecraft {
 }
 
 dependencies {
-    deobfCompile "mezz.jei:jei_1.10.2:3.9.3.252"
+    //deobfCompile "mezz.jei:jei_1.10.2:3.9.3.252"
 }
 
 processResources
